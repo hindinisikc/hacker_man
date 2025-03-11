@@ -12,16 +12,17 @@ const progressBar = document.getElementById("progress-bar");
 
 // Attack scenarios with increasing complexity
 const attackScenarios = [
-    { attack: "Firewall breach detected!", defenses: ["enable firewall", "firewall.enable_protection()", "security.firewall.activate_now()"] },
-    { attack: "Brute-force attack in progress!", defenses: ["change password", "security.change_password()", "system.update.password_secure()"] },
-    { attack: "Malware detected in system files!", defenses: ["scan system", "system.scan_for_viruses()", "security.scan.full_system_now()"] },
-    { attack: "Phishing attempt detected!", defenses: ["block email", "email.block_sender()", "email.security.block_phishing_attack()"] },
-    { attack: "Data exfiltration in progress!", defenses: ["terminate connection", "network.terminate_active_session()", "network.security.disconnect_intruder()"] },
-    { attack: "DDoS attack flooding network!", defenses: ["activate mitigation", "network.ddos_protection.enable()", "security.activate_ddos_defense_now()"] },
-    { attack: "Keylogger installed!", defenses: ["remove keylogger", "system.remove_keylogger()", "security.remove.malware.keylogger()"] },
-    { attack: "Rootkit detected!", defenses: ["purge rootkit", "system.purge_rootkit()", "security.rootkit_elimination.execute()"] },
-    { attack: "System corruption detected!", defenses: ["restore backup", "system.restore_backup()", "system.recovery.restore_files_now()"] }
+    { attack: "Firewall breach detected!", defenses: ["enable firewall", "firewall.enable_protection()", "security.firewall.activate_now()", "security.firewall.activate_now(password, 12345)"] },
+    { attack: "Brute-force attack in progress!", defenses: ["change password", "security.change_password()", "system.update.password_secure()", "system.update.password_secure(password, 12345)"] },
+    { attack: "Malware detected in system files!", defenses: ["scan system", "system.scan_for_viruses()", "security.scan.full_system_now()", "security.scan.full_system_now(password, 12345)"] },
+    { attack: "Phishing attempt detected!", defenses: ["block email", "email.block_sender()", "email.security.block_phishing_attack()", "email.security.block_phishing_attack(password, 12345)"] },
+    { attack: "Data exfiltration in progress!", defenses: ["terminate connection", "network.terminate_active_session()", "network.security.disconnect_intruder()", "network.security.disconnect_intruder(password, 12345)"] },
+    { attack: "DDoS attack flooding network!", defenses: ["activate mitigation", "network.ddos_protection.enable()", "security.activate_ddos_defense_now()", "security.activate_ddos_defense_now(password, 12345)"] },
+    { attack: "Keylogger installed!", defenses: ["remove keylogger", "system.remove_keylogger()", "security.remove.malware.keylogger()", "security.remove.malware.keylogger(password, 12345)"] },
+    { attack: "Rootkit detected!", defenses: ["purge rootkit", "system.purge_rootkit()", "security.rootkit_elimination.execute()", "security.rootkit_elimination.execute(password, 12345)"] },
+    { attack: "System corruption detected!", defenses: ["restore backup", "system.restore_backup()", "system.recovery.restore_files_now()", "system.recovery.restore_files_now(password, 12345)"] }
 ];
+
 
 // Get attack command based on current difficulty
 function getDefenseCommand(attack) {
@@ -64,7 +65,7 @@ function updateTimer() {
 
         attackInterval = setTimeout(updateTimer, 1000);
     } else {
-        codeOutput.innerHTML += `\n❌ You failed to stop the attack! System compromised!\n`;
+        codeOutput.innerHTML += `\nYou failed to stop the attack! System compromised!\n`;
         gameOver();
     }
 }
@@ -77,31 +78,31 @@ userInput.addEventListener("keypress", (event) => {
         userInput.value = "";
 
         if (command === currentAttack) {
-            codeOutput.innerHTML = `✅ Defense successful! Attack neutralized!\n`;
+            codeOutput.innerHTML = `Defense successful! Attack neutralized!\n`;
             clearTimeout(attackInterval);
-            setTimeout(startAttack, 1500);
+            setTimeout(startAttack, 5000);
         } else {
-            codeOutput.innerHTML += `❌ Incorrect command! Try again!\n`;
+            codeOutput.innerHTML += `Incorrect command! Try again!\n`;
         }
     }
 });
 
 // Game over function
 function gameOver() {
-    codeOutput.innerHTML += `\n💀 Game Over! Your system has been hacked! 💀\n`;
+    codeOutput.innerHTML += `\n <span class="gameOver">${"> Y O U H A V E B E E N H A C K E D < > ＰＲＥＳＳ Ｆ５ ＴＯ ＲＥＢＯＯＴ <"}</span>\n`;
     userInput.disabled = true;
 }
 
 // Increase difficulty every 60 seconds
 setInterval(() => {
     difficultyLevel++; // Increase difficulty
-    codeOutput.innerHTML += `\n⚡ Difficulty increased! You now need to type longer commands!\n`;
+    codeOutput.innerHTML += `\nDifficulty increased! You now need to type longer commands!\n`;
 }, 30000);
 
 // Start the game
 startAttack();
 
-const fakeCodeLines = [
+const fakeCodeLines = [ 
     "[WARNING] Unauthorized access detected!",
     "Attempting to establish remote connection...",
     "Bypassing firewall security...",

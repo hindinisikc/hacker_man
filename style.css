@@ -51,6 +51,12 @@ body {
     font-weight: bold;
 }
 
+.gameOver {
+    color: red;
+    font-weight: bolder;
+    font-size: 34px;
+}
+
 
 /* Flickering effect */
 @keyframes flicker {
@@ -95,6 +101,7 @@ body {
 .defense {
     color: #00ff00; /* Bright green */
     font-weight: bold;
+    font-size: 24px;
 }
 
 /* Red text for alerts */
