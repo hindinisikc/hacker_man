@@ -88,6 +88,7 @@ body {
 #user-input:focus {
     border: 2px solid #ffffff;
     box-shadow: 0 0 15px #ffffff13;
+    
 }
 
 #timer {

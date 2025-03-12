@@ -283,6 +283,8 @@ userInput.addEventListener("keypress", (event) => {
             response = quotes[Math.floor(Math.random() * quotes.length)];
         } else if (command === "rickroll") {
             response = "Never gonna give you up, never gonna let you down...";
+        } else if (command === defenses) {
+            response = "Initiating defense protocol...";
         }
 
         codeOutput.innerHTML += `\n> ${command}\n${response}\n`;
